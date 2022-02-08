@@ -56,19 +56,12 @@
                             <li><a href="#"><i class="icon-youtube-play"></i></a></li>
                         </ul>
                         <h3 style="color:white;">© Fly Far Ladies 2022</h3>
+                        <div class="slgonimg">
+                            <img src="img/SSLCOMMERZ.png" class="img-fluid" alt="SSL Commerce" />
+                        </div>
                     </div>
                 </div>
             </div><!-- End row -->
-            <div class="row">
-                <div class="container">
-                    <div class="col-md-6">
-                        <div class="slgonimg">
-                            <img src="img/SSLCOMMERZ.png" width="1100px" hight="100px" alt="" />
-                        </div>
-                    </div>                    
-                </div>
-            </div><!-- End row -->
-
         </div><!-- End container -->
     </footer><!-- End footer -->
 

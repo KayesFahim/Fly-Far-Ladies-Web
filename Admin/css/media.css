@@ -1,0 +1,39 @@
+@media (min-width:0px) and (max-width:991px){
+
+
+.form{
+    padding-top:50px;
+    padding-bottom: 70px;
+}
+.my_form .form_icon{
+    font-size:60px;
+}
+.my_form .title{
+    font-size:20px;
+}
+.my_form .form_control{
+    font-size:10px;
+}
+.my_form .form_control::placeholder{
+    font-size:12px;
+}
+.my_form .btn{
+    font-size: 12px;
+    font-weight:400px;
+}
+
+input:required { 
+    background-color: #fff;
+    color:#f50808;
+}
+
+.card-bg{
+  background-image: url("../assets/img/pdfbg.jpeg");
+  background-position: center;
+  height: 500px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+}

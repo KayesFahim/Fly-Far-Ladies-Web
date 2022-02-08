@@ -1,0 +1,100 @@
+/*font-family: 'Raleway', sans-serif;*/
+
+
+
+.form{
+    
+    height:100vh;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    background-color: skyblue;
+}
+.my_form{
+    margin:auto;
+    text-align:center;
+    font-family:'Raleway', sans-serif;
+    text-transform: uppercase;
+    
+}
+.my_form .form_icon{
+    color:black;
+    font-size:100px;
+    line-height:85px;
+    margin: 0 0 13px;
+}
+.my_form .title{
+    color:#fff;
+    font-size:23px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin:0 0 35px 0;
+}
+.my_form .form_group{
+    margin: 0 0 12px;
+    position:relative;
+
+}
+.my_form .icon {
+    position: absolute;
+    right: px;
+    top: 47%;
+    transform: translateY(-50%);
+    font-size: 15px;
+    color: black;
+    left: 12px;
+    /*border: 1px solid #fff;*/
+   /* padding: 2px;*/
+   /* background-color: #fff;*/
+}
+.my_form .form_control{
+    color:#555;
+    background-color: #fff;
+    font-size:13px;
+    letter-spacing: 1px;
+    height:37px;
+    padding:2px 15px 2px 35px;
+    border:none;
+    border-radius:50px;
+}
+.my_form .form_control::placeholder{
+    color:rgba(0, 0, 0, 0.7);
+    font-size:14px;
+    text-transform: capitalize;
+
+}
+.my_form .btn{
+    color:#fff;
+    background-color: #222;
+    font-size:15px;
+    font-weight:600;
+    letter-spacing: 1px;
+    width:50%;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+    border:none;
+    border-radius: 20px;
+    text-transform: uppercase;
+
+}
+.my_form .form_option{
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+.my_form .form_option li a {
+    color: #fff;
+    letter-spacing: 0.5px;
+    margin: 0 0 10px;
+    display: block;
+    font-size: 12px;
+    font-family: 'Raleway';
+}
+.my_form .form_option li a i{
+    font-size:12px;
+}
+
+.login-button {
+    text-decoration: none;
+}
