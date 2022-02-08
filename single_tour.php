@@ -87,7 +87,7 @@ if ($result->num_rows > 0) {
                     <div class="col-6"><i class="icon-phone"></i><strong>+8801755582111</strong></div>
                     <div class="col-6">
                         <ul id="top_links">
-                            <li><a href="#sign-in-dialog" id="access_link"><b>My Account</b></a></li>
+                            <li><a href="login.php" id="access_link"><b>My Account</b></a></li>
                                                        
                         </ul>
                     </div>
