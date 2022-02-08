@@ -145,7 +145,7 @@ if ($result->num_rows > 0) {
         </div><!-- container -->
     </header><!-- End Header -->
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="<?php echo $img; ?>" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window" data-parallax="scroll" data-image-src="<?php echo "Admin/Packages/$img"; ?>" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-2">
 			<div class="container">
 				<div class="row">
@@ -254,8 +254,15 @@ if ($result->num_rows > 0) {
 							<h3>Reviews </h3>
 							<a href="#" class="btn_1 add_bottom_30" data-toggle="modal" data-target="#myReview">Leave a review</a>
 						</div>
+
+						<?php 
+						$ses_sql = "SELECT * FROM review where Pkid='$PackageId' ORDER BY id DESC";
+						$result = mysqli_query($conn,$ses_sql);
+						$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+						$count = mysqli_num_rows($result);
+						 ?>
 						<div class="col-lg-9">
-							<div id="general_rating">11 Reviews
+							<div id="general_rating"><?php echo $count; ?> Reviews
 								<div class="rating">
 									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
 								</div>
@@ -264,25 +271,16 @@ if ($result->num_rows > 0) {
 							<div class="row" id="rating_summary">
 								<div class="col-md-6">
 									<ul>
-										<li>Position
-											<div class="rating">
-												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-											</div>
-										</li>
-										<li>Tourist guide
-											<div class="rating">
-												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i>
-											</div>
-										</li>
-									</ul>
-								</div>
-								<div class="col-md-6">
-									<ul>
 										<li>Price
 											<div class="rating">
 												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
 											</div>
 										</li>
+										
+									</ul>
+								</div>
+								<div class="col-md-6">
+									<ul>										
 										<li>Quality
 											<div class="rating">
 												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i>
@@ -293,44 +291,35 @@ if ($result->num_rows > 0) {
 							</div>
 							<!-- End row -->
 							<hr>
-							<div class="review_strip_single">
-								<img src="img/avatar1.jpg" alt="Image" class="rounded-circle">
-								<small> - 10 March 2015 -</small>
-								<h4>Jhon Doe</h4>
-								<p>
-									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
-								</p>
-								<div class="rating">
-									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-								</div>
-							</div>
-							<!-- End review strip -->
+							<?php 
 
-							<div class="review_strip_single">
-								<img src="img/avatar3.jpg" alt="Image" class="rounded-circle">
-								<small> - 10 March 2015 -</small>
-								<h4>Jhon Doe</h4>
-								<p>
-									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
-								</p>
-								<div class="rating">
-									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-								</div>
-							</div>
-							<!-- End review strip -->
+							$sql = "SELECT * FROM review where Pkid='$PackageId' ORDER BY id DESC LIMIT 3";
+							$result = $conn->query($sql);
 
-							<div class="review_strip_single last">
-								<img src="img/avatar2.jpg" alt="Image" class="rounded-circle">
-								<small> - 10 March 2015 -</small>
-								<h4>Jhon Doe</h4>
-								<p>
-									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
-								</p>
-								<div class="rating">
-									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-								</div>
-							</div>
-							<!-- End review strip -->
+							if ($result->num_rows > 0) {
+								while($row = $result->fetch_assoc()) {													  
+									$name = $row["name"];
+									$comment = $row["comment"];
+									$created  = $row["created"];
+
+							echo "<div class='review_strip_single'>
+									<img src='img/avatar1.jpg' alt='Image' class='rounded-circle'>
+									<small> - $created -</small>
+									<h4>$name</h4>
+									<p>
+										'$comment'
+									</p>
+									<div class='rating'>
+										<i class='icon-smile voted'></i><i class='icon-smile voted'></i><i class='icon-smile voted'></i><i class='icon-smile'></i><i class='icon-smile'></i>
+									</div>
+								</div>";
+
+								}
+							}
+							
+							
+
+							?>
 						</div>
 					</div>
 				</div>
@@ -366,8 +355,8 @@ if ($result->num_rows > 0) {
 					<div class="box_style_4">
 						<i class="icon_set_1_icon-90"></i>
 						<h4><span>Book</span> by phone</h4>
-						<a href="tel://004542344599" class="phone">+45 423 445 99</a>
-						<small>Monday to Friday 9.00am - 7.30pm</small>
+						<a href="tel://004542344599" class="phone">+8801755582111</a>
+						<small>Sat to Thursaday At 9.30-6.30</small>
 					</div>
 
 				</aside>
@@ -393,31 +382,31 @@ if ($result->num_rows > 0) {
 	</main>
 	<!-- End main -->
 
+	
+
 	<footer class="revealed">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
                     <h3>Need help?</h3>
-                    <a href="tel://004542344599" id="phone">+45 423 445 99</a>
-                    <a href="mailto:help@citytours.com" id="email_footer">help@citytours.com</a>
+                    <a href="tel://+8801755582111" id="phone">+8801755582111</a>
+                    <a href="mailto:info@flyfarladies.com" id="email_footer">info@flyfarladies.com</a>
                 </div>
                 <div class="col-md-3">
                     <h3>About</h3>
                     <ul>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Login</a></li>
-                        <li><a href="#">Register</a></li>
-                         <li><a href="#">Terms and condition</a></li>
+                        <li><a href="about.php">About us</a></li>
+                        <li><a href="login.php">Login</a></li>
+                        <li><a href="register.php">Register</a></li>
+                         <li><a href="termscondition.php">Terms and condition</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3">
                     <h3>Discover</h3>
                     <ul>
-                        <li><a href="#">Community blog</a></li>
-                        <li><a href="#">Tour guide</a></li>
-                        <li><a href="#">Wishlist</a></li>
-                         <li><a href="#">Gallery</a></li>
+                        <li><a href="refundpolicy.php">Refund Policy</a></li>
+                        <li><a href="privacypolicy.php">Privacy Policy</a></li>
+                         <li><a href="Gallery.php">Gallery</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2">
@@ -430,8 +419,8 @@ if ($result->num_rows > 0) {
                     </div>
                     <div class="styled-select">
                         <select name="currency" id="currency">
-                            <option value="BDT" selected>BDT</option>
-                            
+                            <option value="EUR">BDT</option>
+                           
                         </select>
                     </div>
                 </div>
@@ -440,7 +429,7 @@ if ($result->num_rows > 0) {
                 <div class="col-md-12">
                     <div id="social_footer">
                         <ul>
-                            <li><a href="#"><i class="icon-facebook"></i></a></li>
+                            <li><a href="https://www.facebook.com/flyfarladies"><i class="icon-facebook"></i></a></li>
                             <li><a href="#"><i class="icon-twitter"></i></a></li>
                             <li><a href="#"><i class="icon-google"></i></a></li>
                             <li><a href="#"><i class="icon-instagram"></i></a></li>
@@ -448,7 +437,10 @@ if ($result->num_rows > 0) {
                             <li><a href="#"><i class="icon-vimeo"></i></a></li>
                             <li><a href="#"><i class="icon-youtube-play"></i></a></li>
                         </ul>
-                        <p>© Fly Far Ladies 2018</p>
+                        <h3 style="color:white;">© Fly Far Ladies 2022</h3>
+                        <div class="slgonimg">
+                            <img src="img/SSLCOMMERZ.png" class="img-fluid" alt="SSL Commerce" />
+                        </div>
                     </div>
                 </div>
             </div><!-- End row -->
@@ -456,46 +448,6 @@ if ($result->num_rows > 0) {
     </footer><!-- End footer -->
 
 	<div id="toTop"></div><!-- Back to top button -->
-	
-	
-	<!-- Sign In Popup -->
-	<div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
-		<div class="small-dialog-header">
-			<h3>Sign In</h3>
-		</div>
-		<form>
-			<div class="sign-in-wrapper">
-				
-				<div class="divider"><span>Or</span></div>
-				<div class="form-group">
-					<label>Email</label>
-					<input type="email" class="form-control" name="email" id="email">
-					<i class="icon_mail_alt"></i>
-				</div>
-				<div class="form-group">
-					<label>Password</label>
-					<input type="password" class="form-control" name="password" id="password" value="">
-					<i class="icon_lock_alt"></i>
-				</div>
-				
-				<div class="text-center"><input type="submit" value="Log In" class="btn_login"></div>
-				<div class="text-center">
-					Don’t have an account? <a href="register.php">Sign up</a>
-				</div>
-				<div id="forgot_pw">
-					<div class="form-group">
-						<label>Please confirm login email below</label>
-						<input type="email" class="form-control" name="email_forgot" id="email_forgot">
-						<i class="icon_mail_alt"></i>
-					</div>
-					<p>You will receive an email containing a link allowing you to reset your password to a new preferred one.</p>
-					<div class="text-center"><input type="submit" value="Reset Password" class="btn_1"></div>
-				</div>
-			</div>
-		</form>
-		<!--form -->
-	</div>
-	<!-- /Sign In Popup -->
 
 	<!-- Modal Review -->
 	<div class="modal fade" id="myReview" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
@@ -508,8 +460,8 @@ if ($result->num_rows > 0) {
 				<div class="modal-body">
 					<div id="message-review">
 					</div>
-					<form method="post" action="assets/review_tour.php" name="review_tour" id="review_tour">
-						<input name="tour_name" id="tour_name" type="hidden" value="Paris Arch de Triomphe Tour">
+					<form method="post" action="addReview.php" name="review_tour" id="review_tour">
+						<input name="pkid" id="pkid" type="hidden" value="<?php echo $PackageId ?>">
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
@@ -518,50 +470,14 @@ if ($result->num_rows > 0) {
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input name="lastname_review" id="lastname_review" type="text" placeholder="Your last name" class="form-control">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
 									<input name="email_review" id="email_review" type="email" placeholder="Your email" class="form-control">
 								</div>
 							</div>
 						</div>
 						<!-- End row -->
+
+						<!-- End row -->
 						<hr>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Position</label>
-									<select class="form-control" name="position_review" id="position_review">
-										<option value="">Please review</option>
-										<option value="Low">Low</option>
-										<option value="Sufficient">Sufficient</option>
-										<option value="Good">Good</option>
-										<option value="Excellent">Excellent</option>
-										<option value="Superb">Super</option>
-										<option value="Not rated">I don't know</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Tourist guide</label>
-									<select class="form-control" name="guide_review" id="guide_review">
-										<option value="">Please review</option>
-										<option value="Low">Low</option>
-										<option value="Sufficient">Sufficient</option>
-										<option value="Good">Good</option>
-										<option value="Excellent">Excellent</option>
-										<option value="Superb">Super</option>
-										<option value="Not rated">I don't know</option>
-									</select>
-								</div>
-							</div>
-						</div>
 						<!-- End row -->
 						<div class="row">
 							<div class="col-md-6">
@@ -597,23 +513,24 @@ if ($result->num_rows > 0) {
 						<div class="form-group">
 							<textarea name="review_text" id="review_text" class="form-control" style="height:100px" placeholder="Write your review"></textarea>
 						</div>
-						<div class="form-group">
-							<input type="text" id="verify_review" class=" form-control" placeholder="Are you human? 3 + 1 =">
-						</div>
+
 						<input type="submit" value="Submit" class="btn_1" id="submit-review">
 					</form>
+
+
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- End modal review -->
+	
+
 
 	<!-- Common scripts -->
 	<script src="js/jquery-2.2.4.min.js"></script>
 	<script src="js/common_scripts_min.js"></script>
 	<script src="js/functions.js"></script>
 
-	<!-- Date and time pickers -->
 	<script>
 		$('input.date-pick').datepicker('setDate', 'today');
 		$('input.time-pick').timepicker({
@@ -621,16 +538,35 @@ if ($result->num_rows > 0) {
 			showInpunts: false
 		})
 	</script>
-
-	<!--Review modal validation -->
-	<script src="assets/validate.js"></script>
-
-	<!-- Map -->
-	<script src="http://maps.googleapis.com/maps/api/js"></script>
-	<script src="js/map.js"></script>
-	<script src="js/infobox.js"></script>
 	
+	<script src="js/jquery.ddslick.js"></script>
+	<script>
+		$("select.ddslick").each(function() {
+			$(this).ddslick({
+				showSelectedHTML: true
+			});
+		});
+	</script>
+	
+	<!-- Check box and radio style iCheck -->
+	<script>
+		$('input').iCheck({
+		   checkboxClass: 'icheckbox_square-grey',
+		   radioClass: 'iradio_square-grey'
+		 });
+	</script>
 
-</body>
-
+    <!-- Specific scripts -->
+	<script src="js/tabs.js"></script>
+	<script>
+		new CBPFWTabs(document.getElementById('tabs'));
+	</script>
+	<script>
+		$('.wishlist_close_admin').on('click', function (c) {
+			$(this).parent().parent().parent().fadeOut('slow', function (c) {});
+		});
+	</script>
+	
+	
+  </body>
 </html>

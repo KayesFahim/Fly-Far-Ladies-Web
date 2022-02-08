@@ -65,12 +65,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                                 
                                 <div class="form-group">
                                 	<label>Email</label>
-                                    <input type="email" name="email" class=" form-control" placeholder="Email" required>
+                                    <input type="email" name="userEmail" class=" form-control" placeholder="Email" required>
                                 </div>
                                
                                 <div class="form-group">
                                 	<label>Password</label>
-                                    <input type="password" name="password" class=" form-control" id="password" placeholder="Password" required>
+                                    <input type="password" name="userPassword" class=" form-control" id="password" placeholder="Password" required>
                                 </div>
                                 
                                 <div id="pass-info" class="clearfix"></div>

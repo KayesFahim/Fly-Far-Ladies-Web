@@ -8,7 +8,8 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
 	while($row = $result->fetch_assoc()) {
         $outputString = preg_replace('/[^0-9]/', '', $row["PKG-Id"]);
-		$PKG_Id = "PKG-".(int)$outputString + 1;									
+        $number= (int)$outputString + 1;
+		$PKG_Id = "PKG-$number";									
  }
 } else {
 	$PKG_Id ="PKG-1000";
@@ -143,7 +144,7 @@ if ($result->num_rows > 0) {
 	<!-- Main CSS -->
 	<link rel="stylesheet" href="../assets/css/style.css">
 
-    <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
+	<script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
 </head>
 <body>
 	
@@ -319,13 +320,21 @@ if ($result->num_rows > 0) {
                                                         <div class="col-md-3">
 															<div class="form-group">
 																<label>Tour Type</label>
-																<input type="text" name="type" class="form-control" required>
+																<select name="type" class="select form-control"  required>
+                                                                            <option value="" disabled selected>Select Type</option>
+                                                                            <option value="Night Out Trip">Night Out Trip</option>
+                                                                            <option value="Day Long Trip">Day Long Trip</option>                                                                           	                                                                           	
+                                                                </select>
 															</div>
 														</div>
                                                         <div class="col-md-3">
 															<div class="form-group">
 																<label>Trip Plan</label>
-																<input type="text" name="plan" class="form-control" required>
+																<select name="plan" class="select form-control"  required>
+                                                                            <option value="" disabled selected>Select Type</option>
+                                                                            <option value="Inbound">Inbound</option>
+                                                                            <option value="Out Bound">Out Bound</option>                                                                           	                                                                           	
+                                                                </select>
 															</div>
 														</div>
                                                         <div class="col-md-3">
@@ -343,7 +352,12 @@ if ($result->num_rows > 0) {
                                                         <div class="col-md-3">
 															<div class="form-group">
 																<label>Trip Theme</label>
-																<input type="text" name="tripTheme" class="form-control" required>
+																<select name="tripTheme" class="select form-control"  required>
+                                                                            <option value="" disabled selected>Select Type</option>
+                                                                            <option value="Luxurious tour">Luxurious Tour</option>
+                                                                            <option value="Relax Tour">Relax Tour</option> 
+																			<option value="Adventure Tour">Adventure Tour</option>                                                                            	                                                                           	
+                                                                </select>
 															</div>
 														</div>
                                                         <div class="col-md-3">
@@ -360,7 +374,7 @@ if ($result->num_rows > 0) {
 														</div>
                                                         <div class="col-md-3">
 															<div class="form-group">
-																<label>Cover Image</label>
+																<label>Cover Image (W:800 x H:533)</label>
 																<input type="file" id="coverimage" name="coverimage" class="form-control" required>
 															</div>
 														</div>
@@ -390,43 +404,43 @@ if ($result->num_rows > 0) {
 														</div>
                                                     </div>
                                                     <div class="row">    
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
 															<div class="form-group">
 																<label for="description">Description</label>
-																<textarea class="form-control" id="description" name="description" rows="7"></textarea>
+																<textarea class="form-control" id="description" name="description" rows="15"></textarea>
 															</div>
 														</div>
 
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
 															<div class="form-group">
-																<label for="description">Package Inclusion</label>
-																<textarea class="form-control" id="packageinclusion" name="packageinclusion" rows="7"></textarea>
+																<label for="packageinclusion">Package Inclusion</label>
+																<textarea class="form-control" id="packageinclusion" name="packageinclusion" rows="15"></textarea>
 															</div>
 														</div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
 															<div class="form-group">
-																<label for="description">Package Exclusion</label>
-																<textarea class="form-control" id="packageexclusion" name="packageexclusion" rows="7"></textarea>
+																<label for="packageexclusion">Package Exclusion</label>
+																<textarea class="form-control" id="packageexclusion" name="packageexclusion" rows="15"></textarea>
 															</div>
 														</div>
     
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
 															<div class="form-group">
-																<label for="description">Term & Condition</label>
-																<textarea class="form-control" id="terms" name="terms" rows="7"></textarea>
+																<label for="terms">Term & Condition</label>
+																<textarea class="form-control" id="terms" name="terms" rows="15"></textarea>
 															</div>
 														</div>
 
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
 															<div class="form-group">
-																<label for="description">Policy</label>
-																<textarea class="form-control" id="policy" name="policy" rows="7"></textarea>
+																<label for="policy">Policy</label>
+																<textarea class="form-control" id="policy" name="policy" rows="15"></textarea>
 															</div>
 														</div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
 															<div class="form-group">
-																<label for="description">Tour Inclusion</label>
-																<textarea class="form-control" id="tourinclusion" name="tourinclusion" rows="7"></textarea>
+																<label for="tourinclusion">Tour Inclusion</label>
+																<textarea class="form-control" id="tourinclusion" name="tourinclusion" rows="15"></textarea>
 															</div>
 														</div>
                                                     </div>
@@ -454,6 +468,14 @@ if ($result->num_rows > 0) {
 			</div>
 			<!-- /Main Wrapper -->
 			<input type="hidden" id="refresh" value="no">
+			<script>
+                    CKEDITOR.replace( 'description' );
+					CKEDITOR.replace( 'packageinclusion' );
+					CKEDITOR.replace( 'packageexclusion' );
+					CKEDITOR.replace( 'terms' );
+					CKEDITOR.replace( 'policy' );
+					CKEDITOR.replace( 'tourinclusion' );
+            </script>
 
 			<script>
 				jQuery( document ).ready(function( $ ) {
@@ -464,6 +486,8 @@ if ($result->num_rows > 0) {
 
 				});
 			</script>
+
+			
 			<!-- jQuery -->
 			<script src="../assets/js/jquery-3.2.1.min.js"></script>
 			<!-- Bootstrap Core JS -->

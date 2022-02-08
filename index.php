@@ -115,65 +115,38 @@ include 'config.php'
 
 			<div class="tab-content">
 				<div class="tab-pane active show" id="tours">
-					<h3>Search Tours with Fly Far Ladies</h3>
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<div class="form-group">
 								<label>Search terms</label>
 								<input type="text" class="form-control" id="firstname_booking" name="firstname_booking" placeholder="Type your search terms">
 							</div>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-3">
 							<div class="form-group">
-								<label>Things to do</label>
+								<label>Category</label>
 								<select class="ddslick" name="category">
 									<option value="0" data-imagesrc="img/icons_search/all_tours.png" selected>All tours</option>
-									<option value="1" data-imagesrc="img/icons_search/sightseeing.png">City sightseeing</option>
-									<option value="2"  data-imagesrc="img/icons_search/museums.png">Museum tours</option>
-									<option value="3" data-imagesrc="img/icons_search/historic.png">Historic Buildings</option>
-									<option value="4" data-imagesrc="img/icons_search/walking.png">Walking tours</option>
-									<option value="5" data-imagesrc="img/icons_search/eat.png">Eat & Drink</option>
-									<option value="6" data-imagesrc="img/icons_search/churches.png">Churces</option>
-									<option value="7" data-imagesrc="img/icons_search/skyline.png">Skyline tours</option>
+									<option value="1" data-imagesrc="img/icons_search/sightseeing.png">Inbound</option>
+									<option value="2"  data-imagesrc="img/icons_search/museums.png">Out Bound</option>																	
 								</select>
 							</div>
 						</div>
-					</div>
-					<!-- End row -->
-					<div class="row">
 						<div class="col-md-3">
 							<div class="form-group">
 								<label><i class="icon-calendar-7"></i> Date</label>
 								<input class="date-pick form-control" data-date-format="M d, D" type="text">
 							</div>
 						</div>
-						<div class="col-md-3">
+												
+						<div class="col-md-2 align-self-center">
 							<div class="form-group">
-								<label><i class=" icon-clock"></i> Time</label>
-								<input class="time-pick form-control" value="12:00 AM" type="text">
+								<button class="btn_1 green"><i class="icon-search"></i>Search now</button>							
 							</div>
 						</div>
-						<div class="col-md-2 col-sm-3 col-6">
-							<div class="form-group">
-								<label>Adults</label>
-								<div class="numbers-row">
-									<input type="text" value="1" id="adults" class="qty2 form-control" name="adults">
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2 col-sm-3 col-6">
-							<div class="form-group">
-								<label>Children</label>
-								<div class="numbers-row">
-									<input type="text" value="0" id="children" class="qty2 form-control" name="children">
-								</div>
-							</div>
-						</div>
-
 					</div>
 					<!-- End row -->
-					<hr>
-					<button class="btn_1 green"><i class="icon-search"></i>Search now</button>
+					
 				</div>
 				<!-- End rab -->
 								
@@ -210,7 +183,7 @@ include 'config.php'
 									<div class='ribbon_3 popular'><span>New</span></div>
 									<div class='img_container'>
 										<a href='single_tour.php?id=$PackageId'>
-										<img src='$img' width='800' height='533' class='img-fluid' alt='Image'>
+										<img src='Admin/Packages/$img' width='800' height='533' class='img-fluid' alt='Image'>
 										<div class='short_info'>
 											<i class='icon_set_1_icon-44'></i>$Type<span class='price'><sup>৳</sup>$Cost</span>
 										</div>
