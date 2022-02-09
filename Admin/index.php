@@ -168,9 +168,10 @@
                             <li>
                                 <a data-toggle='dropdown'><i class='fe fe-layout'></i> <span>Gallery</span></a>
                                     <ul>
-                                        <li><a href='Packages/Add.php'><i class='fe fe-layout'></i> <span>Add</span></a></li>
-                                        <li><a href='Packages'><i class='fe fe-layout'></i> <span> View</span></a> </li>
-                                        <li><a href='Packages/Edit.php'><i class='fe fe-layout'></i> <span> Edit</span></a> </li>
+                                        <li><a href='../Gallery/AddAlbum.php'><i class='fe fe-layout'></i> <span> Add Album</span></a> </li>
+                                        <li><a href='../Gallery/Add.php'><i class='fe fe-layout'></i> <span>Add Image</span></a></li>
+                                        <li><a href='Gallery'><i class='fe fe-layout'></i> <span> View</span></a> </li>
+                                        <li><a href='Gallery/Edit.php'><i class='fe fe-layout'></i> <span> Edit</span></a> </li>
                                         
                                     </ul>
                             </li>

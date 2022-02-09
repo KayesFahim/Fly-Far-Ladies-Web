@@ -33,7 +33,10 @@ include 'config.php'
 	
 	<!-- CUSTOM CSS -->
 	<link href="css/custom.css" rel="stylesheet">
-        
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script>
+
+	
 </head>
 <body>
 
@@ -184,7 +187,7 @@ include 'config.php'
 									<div class='ribbon_3 popular'><span>New</span></div>
 									<div class='img_container'>
 										<a href='packages.php?id=$PackageId&title=$LongTitle'>
-										<img src='Admin/Packages/$img' width='800' height='533' class='img-fluid' alt='Image'>
+										<img src='Admin/Packages/$img' width='800px' height='533px' class='img-fluid' alt='Image'>
 										<div class='short_info'>
 											<i class='icon_set_1_icon-44'></i>$Type<span class='price'><sup>৳</sup>$Cost</span>
 										</div>
@@ -235,6 +238,8 @@ include 'config.php'
 			</div>
 
 			<div class="row">
+
+			
 
 				<div class="col-lg-4 wow zoomIn" data-wow-delay="0.2s">
 					<div class="feature_home">
@@ -341,6 +346,7 @@ include 'config.php'
 		<!-- End container -->
     </main>
 	<!-- End main -->
+
 
 <!----- Foooter ----->
 <?php include "footer.php" ?>

@@ -1,40 +1,12 @@
 <?php
 
-require('../session.php');
-
-
-$sql = "SELECT * FROM packages ORDER BY id DESC LIMIT 1";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-	while($row = $result->fetch_assoc()) {
-        $outputString = preg_replace('/[^0-9]/', '', $row["PKG-Id"]);
-        $number= (int)$outputString + 1;
-		$PKG_Id = "PKG-$number";									
- }
-} else {
-	$PKG_Id ="PKG-1000";
-
-}
+require_once('../session.php');
 
  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$shortTitle = $_POST['sTitle'];
-	$LongTitle = $_POST['lTitle'];
-	$Description = $_POST['description'];
-	$PkInclusion = $_POST['packageinclusion'];
-	$PkExclusion = $_POST['packageexclusion'];
-	$Duration = $_POST['duration'];
-	$Destination = $_POST['destination'];
-	$TourType = $_POST['type'];
-	$TourTheme = $_POST['tripTheme'];
-	$TourPlan = $_POST['plan'];
-	$GroupSize = $_POST['groupsize'];
-	$PkCode = $_POST['packageCode'];
-	$Cost = $_POST['cost'];
-	$TourInclusion = $_POST['tourinclusion'];
-	$Terms = $_POST['terms'];
-	$Policy = $_POST['policy'];
-	//$Operation = $_POST['operation'];
-	$BookCloseDate = $_POST['close'];
+	$album = $_POST['album'];
+	$title = $_POST['title'];
+	$description = $_POST['description'];
+	
 
 
     $targetDir = "images/";
@@ -58,57 +30,17 @@ if ($result->num_rows > 0) {
   }
 
 
-    $sqlquery = "INSERT INTO `packages`(                                            
-        `PKG-Id`,
-		`shortTitle`,
-		`longTitle`,
-		`description`,
-		`packageInclusion`,
-		`duration`,
-		`destination`,
-		`tourType`,
-		`tripPlan`,
-		`groupsize`,
-		`packageCode`,
-		`tripTheme`,
-		`coverimage`,
-		`sightImg1`,
-		`sightImg2`,
-		`sightImg3`,
-		`sightImg4`,
-		`cost`,
-		`exclusion`,
-		`bookclosedate`,
-		`tourInclusion`,
-		`terms`,
-		`policy`,
-		`operation`
+    $sqlquery = "INSERT INTO `gallery`(                                            
+        `album`,
+		`title`,
+		`url`,
+		`description`
     )
     VALUES(
-        '$PKG_Id',
-        '$shortTitle',
-		'$LongTitle',
-        '$Description',
-		'$PkInclusion',
-        '$Duration',
-		'$Destination',
-        '$TourType',
-		'$TourPlan',
-        '$GroupSize',
-		'$PkCode',
-        '$TourTheme',
+        '$album',
+        '$title',
 		'$targetFilePath',
-		' ',
-		' ',
-		' ',
-		' ',
-		'$Cost',
-		'$PkExclusion',
-		'$BookCloseDate',
-		'$TourInclusion',
-		'$Terms',
-		'$Policy',
-		' '
+		'$description'
 
     )";
         
@@ -132,7 +64,7 @@ if ($result->num_rows > 0) {
 	<meta charset="utf-8">
 	<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-	<title>Add Packages</title>
+	<title>Add Gallery Images</title>
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.png">
 	<!-- Bootstrap CSS -->
@@ -286,168 +218,57 @@ if ($result->num_rows > 0) {
 											<div class="row">
 												<div class="col-md-12">
 													<div class="row">
+														
 														<div class="col-md-3">
 															<div class="form-group">
-																<label>Packages ID</label>
-																<input type="text" value="<?php echo $PKG_Id ?>" class="form-control" disabled>
-															</div>
-														</div>
-														<div class="col-md-3">
-															<div class="form-group">
-																<label>Short Title</label>
-																<input type="text" name="sTitle" maxlength="15" class="form-control" required>
-															</div>
-														</div>
-														<div class="col-md-3">
-															<div class="form-group">
-																<label>Long Title</label>
-																<input type="text" name="lTitle" maxlength="50" class="form-control" required>
-															</div>
-														</div>
-														<div class="col-md-3">
-															<div class="form-group">
-																<label>Duration</label>
-																<input type="text" name="duration" class="form-control" required>
-															</div>
-														</div>
-                                                        <div class="col-md-3">
-															<div class="form-group">
-																<label>Destination</label>
-																<input type="text" name="destination" class="form-control" required>
-															</div>
-														</div>
-
-                                                        <div class="col-md-3">
-															<div class="form-group">
-																<label>Tour Type</label>
-																<select name="type" class="select form-control"  required>
-                                                                            <option value="" disabled selected>Select Type</option>
-                                                                            <option value="Night Out Trip">Night Out Trip</option>
-                                                                            <option value="Day Long Trip">Day Long Trip</option>                                                                           	                                                                           	
+																<label>Album Name</label>
+																<select name="album" class="select form-control" required>
+                                                                            <option value="" disabled selected> Select Album</option>
+                                                                            <?php
+                                                                                $sql = "SELECT *  FROM `album` ORDER BY name DESC";
+                                                                                $result = $conn->query($sql);                              
+                                                                                if ($result->num_rows > 0) {
+                                                                                while($row = $result->fetch_assoc()) {
+                                                                                    $Name = $row['name'];
+                                                                                    echo "<option value=\"$Name\">".$row['name']."</option>";                                                                                 
+                                                                                    }
+                                                                                }
+                                                                                ?>
+                                                                                
+                                                                            
                                                                 </select>
+                                                                           
 															</div>
 														</div>
-                                                        <div class="col-md-3">
+														<div class="col-md-3">
 															<div class="form-group">
-																<label>Trip Plan</label>
-																<select name="plan" class="select form-control"  required>
-                                                                            <option value="" disabled selected>Select Type</option>
-                                                                            <option value="Inbound">Inbound</option>
-                                                                            <option value="Out Bound">Out Bound</option>                                                                           	                                                                           	
-                                                                </select>
+																<label>Title</label>
+																<input type="text" name="title" maxlength="50" class="form-control" required>
 															</div>
 														</div>
+														
                                                         <div class="col-md-3">
 															<div class="form-group">
-																<label>Group Size</label>
-																<input type="number" name="groupsize" class="form-control" required>
-															</div>
-														</div>
-                                                        <div class="col-md-3">
-															<div class="form-group">
-																<label>Package Code</label>
-																<input type="text" name="packageCode" class="form-control" required>
-															</div>
-														</div>
-                                                        <div class="col-md-3">
-															<div class="form-group">
-																<label>Trip Theme</label>
-																<select name="tripTheme" class="select form-control"  required>
-                                                                            <option value="" disabled selected>Select Type</option>
-                                                                            <option value="Luxurious tour">Luxurious Tour</option>
-                                                                            <option value="Relax Tour">Relax Tour</option> 
-																			<option value="Adventure Tour">Adventure Tour</option>                                                                            	                                                                           	
-                                                                </select>
-															</div>
-														</div>
-                                                        <div class="col-md-3">
-															<div class="form-group">
-																<label>Cost</label>
-																<input type="number" name="cost" class="form-control" required>
-															</div>
-														</div>
-                                                        <div class="col-md-3">
-															<div class="form-group">
-																<label>Book Close Date</label>
-																<input type="date" name="close" class="form-control" required>
-															</div>
-														</div>
-                                                        <div class="col-md-3">
-															<div class="form-group">
-																<label>Cover Image (W:800 x H:533)</label>
+																<label>Upload Image (W:800 x H:533)</label>
 																<input type="file" id="coverimage" name="coverimage" class="form-control" required>
 															</div>
 														</div>
-                                                        <div class="col-md-3">
-															<div class="form-group">
-																<label>Sight1 Image</label>
-																<input type="file" name="sight1image" class="form-control">
-															</div>
-														</div>
-                                                        <div class="col-md-3">
-															<div class="form-group">
-																<label>Slight2 Image</label>
-																<input type="file" name="sight2image" class="form-control" >
-															</div>
-														</div>
-                                                        <div class="col-md-3">
-															<div class="form-group">
-																<label>Slight3 Image</label>
-																<input type="file" name="sight3image" class="form-control">
-															</div>
-														</div>
-                                                        <div class="col-md-3">
-															<div class="form-group">
-																<label>Slight4 Image</label>
-																<input type="file" name="sight4image" class="form-control">
-															</div>
-														</div>
+                                                        
                                                     </div>
                                                     <div class="row">    
                                                         <div class="col-md-6">
 															<div class="form-group">
 																<label for="description">Description</label>
-																<textarea class="form-control" id="description" name="description" rows="15"></textarea>
+																<textarea class="form-control" name="description" rows="5"></textarea>
 															</div>
 														</div>
 
-                                                        <div class="col-md-6">
-															<div class="form-group">
-																<label for="packageinclusion">Package Inclusion</label>
-																<textarea class="form-control" id="packageinclusion" name="packageinclusion" rows="15"></textarea>
-															</div>
-														</div>
-                                                        <div class="col-md-6">
-															<div class="form-group">
-																<label for="packageexclusion">Package Exclusion</label>
-																<textarea class="form-control" id="packageexclusion" name="packageexclusion" rows="15"></textarea>
-															</div>
-														</div>
-    
-                                                        <div class="col-md-6">
-															<div class="form-group">
-																<label for="terms">Term & Condition</label>
-																<textarea class="form-control" id="terms" name="terms" rows="15"></textarea>
-															</div>
-														</div>
-
-                                                        <div class="col-md-6">
-															<div class="form-group">
-																<label for="policy">Policy</label>
-																<textarea class="form-control" id="policy" name="policy" rows="15"></textarea>
-															</div>
-														</div>
-                                                        <div class="col-md-6">
-															<div class="form-group">
-																<label for="tourinclusion">Tour Inclusion</label>
-																<textarea class="form-control" id="tourinclusion" name="tourinclusion" rows="15"></textarea>
-															</div>
-														</div>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
 											<div class="text-right">
-												<button type="submit" class="btn btn-primary"> Add Packages </button>
+												<button type="submit" class="btn btn-primary"> Add Image </button>
 											</div>
 										</form>
 									</div>
@@ -468,14 +289,6 @@ if ($result->num_rows > 0) {
 			</div>
 			<!-- /Main Wrapper -->
 			<input type="hidden" id="refresh" value="no">
-			<script>
-                    CKEDITOR.replace( 'description' );
-					CKEDITOR.replace( 'packageinclusion' );
-					CKEDITOR.replace( 'packageexclusion' );
-					CKEDITOR.replace( 'terms' );
-					CKEDITOR.replace( 'policy' );
-					CKEDITOR.replace( 'tourinclusion' );
-            </script>
 
 			<script>
 				jQuery( document ).ready(function( $ ) {

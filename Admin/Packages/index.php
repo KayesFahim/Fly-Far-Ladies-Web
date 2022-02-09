@@ -1,7 +1,6 @@
 <?php
 
-include '../config.php';
-include('../session.php');
+require_once('../session.php');
 
 ?>
 
@@ -192,13 +191,14 @@ include('../session.php');
 												$result = $conn->query($sql);
 
 												if ($result->num_rows > 0) {
-  												while($row = $result->fetch_assoc()) {													  
-													echo "<tr><td>".$row["PKG-Id"]."</td>
+  												while($row = $result->fetch_assoc()) {	
+													  $PkId = $row["PkId"];											  
+													echo "<tr><td>".$row["PkId"]."</td>
 																<td>".$row["shortTitle"]."</td> 
 														 		<td>".$row["cost"]."</td>
 																<td>".$row["destination"]."</td>
 														 		<td>".$row["groupsize"]."</td>
-																<td><a href='Edit.php' class='btn btn-primary'> Edit </a><td>
+																<td><a href='Edit.php?pkId=$PkId' class='btn btn-primary'> Edit </a><td>
 																 </tr>";   											
 												  }
 												} else {

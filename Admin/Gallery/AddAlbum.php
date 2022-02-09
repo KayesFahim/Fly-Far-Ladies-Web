@@ -1,39 +1,41 @@
 <?php
 
-require('../session.php');
-
-
-$sql = "SELECT * FROM job ORDER BY id DESC LIMIT 1";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-	while($row = $result->fetch_assoc()) {
-        $outputString = preg_replace('/[^0-9]/', '', $row["JobId"]);
-        $number= (int)$outputString + 1;
-		$Job_Id = "Job-$number";									
- }
-} else {
-	$Job_Id ="Job-1000";
-
-}
+require_once('../session.php');
 
  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$Title = $_POST['title'];
-	$Category = $_POST['category'];
-	$Description = $_POST['description'];
+	$album = $_POST['album'];
+	$description = $_POST['description'];
 	
 
-    $sqlquery = "INSERT INTO `job`(                                            
-        `JobId`,
-		`category`,
-		`title`,
-		`description`
+    $targetDir = "images/";
+	mkdir("images/".$album, 0777, true);
+    $fileName = basename($_FILES["coverimage"]["name"]);
+    $targetFilePath = $targetDir."$album/" . $fileName;
+    $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
+
+  // Allow certain file formats
+  $allowTypes = array('jpg','png','jpeg','gif');
+  if(in_array($fileType, $allowTypes)){
+      // Upload file to server
+      if(move_uploaded_file($_FILES["coverimage"]["tmp_name"], $targetFilePath)){
 		
+
+      }else{
+          $statusMsg = "Sorry, there was an error uploading your file.";
+      }
+  }else{
+      $statusMsg = 'Sorry, only JPG, JPEG, PNG, GIF, & PDF files are allowed to upload.';
+  }
+
+
+    $sqlquery = "INSERT INTO `album`(                                            
+        `name`,
+		`coverimage`
     )
     VALUES(
-        '$Job_Id',
-        '$Category',
-		'$Title',
-        '$Description'
+        '$album',
+		'$targetFilePath'
+
     )";
         
         if ($conn->query($sqlquery) === TRUE) {
@@ -56,7 +58,7 @@ if ($result->num_rows > 0) {
 	<meta charset="utf-8">
 	<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-	<title>Add Jobs</title>
+	<title>Add Gallery Images</title>
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.png">
 	<!-- Bootstrap CSS -->
@@ -156,7 +158,7 @@ if ($result->num_rows > 0) {
 						</div>
 						<a class="dropdown-item" href="">My Profile</a>
 						<a class="dropdown-item" href="">Settings</a>
-						<a class="dropdown-item" href="logout.php">Logout</a>
+						<a class="dropdown-item" href="login.php">Logout</a>
 					</div>
 				</li>
 				<!-- /User Menu -->
@@ -183,10 +185,10 @@ if ($result->num_rows > 0) {
 				<div class="page-header">
 					<div class="row">
 						<div class="col-sm-12">
-							<h3 class="page-title">Add New Job</h3>
+							<h3 class="page-title">Add New Packages</h3>
 							<ul class="breadcrumb">
 								<li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-								<li class="breadcrumb-item active">Add Job</li>
+								<li class="breadcrumb-item active">Add Packages</li>
 							</ul>
 						</div>
 					</div>
@@ -202,7 +204,7 @@ if ($result->num_rows > 0) {
 							<div class="col-md-12">
 								<div class="card">
 									<div class="card-header">
-										<h4 class="text-danger card-title">Job Information</h4>
+										<h4 class="text-danger card-title">Packages Information</h4>
 									</div>
                                     
 									<div class="card-body">
@@ -210,37 +212,34 @@ if ($result->num_rows > 0) {
 											<div class="row">
 												<div class="col-md-12">
 													<div class="row">
+														
 														<div class="col-md-3">
 															<div class="form-group">
-																<label>Job ID</label>
-																<input type="text" value="<?php echo $Job_Id ?>" class="form-control" disabled>
+																<label>Album Name</label>
+																<input type="text" name="album" maxlength="50" class="form-control" required>
 															</div>
 														</div>
-														<div class="col-md-3">
+																												
+                                                        <div class="col-md-3">
 															<div class="form-group">
-																<label>Job Category</label>
-																<input type="text" name="category" maxlength="20" class="form-control" required>
+																<label>Upload Image (W:800 x H:533)</label>
+																<input type="file" id="coverimage" name="coverimage" class="form-control" required>
 															</div>
 														</div>
-														<div class="col-md-3">
-															<div class="form-group">
-																<label>Title</label>
-																<input type="text" name="title" maxlength="50" class="form-control" required>
-															</div>
-														</div>
-													</div>	
-                                                    <div class="row">    
-                                                        <div class="col-md-12">
+   
+                                                        <div class="col-md-6">
 															<div class="form-group">
 																<label for="description">Description</label>
-																<textarea class="form-control" id="description" name="description" rows="50"></textarea>
+																<textarea class="form-control" name="description" rows="1"></textarea>
 															</div>
-														</div>                                                       
+														</div>
+
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
 											<div class="text-right">
-												<button type="submit" class="btn btn-primary"> Add Packages </button>
+												<button type="submit" class="btn btn-primary"> Add Album </button>
 											</div>
 										</form>
 									</div>
@@ -261,14 +260,6 @@ if ($result->num_rows > 0) {
 			</div>
 			<!-- /Main Wrapper -->
 			<input type="hidden" id="refresh" value="no">
-			<script>
-                    CKEDITOR.replace( 'description' );
-					CKEDITOR.replace( 'packageinclusion' );
-					CKEDITOR.replace( 'packageexclusion' );
-					CKEDITOR.replace( 'terms' );
-					CKEDITOR.replace( 'policy' );
-					CKEDITOR.replace( 'tourinclusion' );
-            </script>
 
 			<script>
 				jQuery( document ).ready(function( $ ) {

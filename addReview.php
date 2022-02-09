@@ -36,7 +36,7 @@ $pkid = $_POST['pkid'];
     )";
 
 if ($conn->query($sql) === TRUE) {
-    header("location:single_tour.php?id=$pkid");
+    header("location:packages.php?id=$pkid");
     die();
     
     

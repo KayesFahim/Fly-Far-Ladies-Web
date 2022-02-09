@@ -1,13 +1,13 @@
 <?php
 
-require('../session.php');
+require_once('../session.php');
 
 
 $sql = "SELECT * FROM packages ORDER BY id DESC LIMIT 1";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
 	while($row = $result->fetch_assoc()) {
-        $outputString = preg_replace('/[^0-9]/', '', $row["PKG-Id"]);
+        $outputString = preg_replace('/[^0-9]/', '', $row["PkId"]);
         $number= (int)$outputString + 1;
 		$PKG_Id = "PKG-$number";									
  }
