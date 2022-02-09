@@ -1,5 +1,17 @@
-<?php require  'config.php' ?>
-<?php
+<?php require  'config.php';
+
+$sql = "SELECT * FROM users ORDER BY CSR_Id DESC LIMIT 1";
+                            $result = $conn->query($sql);
+                            if ($result->num_rows > 0) {
+                                while($row = $result->fetch_assoc()) {
+                                    $outputString = preg_replace('/[^0-9]/', '', $row["CSR_Id"]);
+                                    $number= (int)$outputString + 1;
+                                    $CSR_Id = "CSR-$number";								
+                             }
+                            } else {
+                                $CSR_Id ="CSR-1000";
+                            
+                            }
 
 								if ($_SERVER["REQUEST_METHOD"] == "POST") {
 									$Name = $_POST['username'];
@@ -72,22 +84,6 @@
                 	<div id="login">
                     		<div class="text-center"><img src="img/logo.png" alt="Image" data-retina="true" ></div>
                             <hr>
-
-                            <?php
-                            $sql = "SELECT * FROM users ORDER BY CSR_Id DESC LIMIT 1";
-                            $result = $conn->query($sql);
-                            if ($result->num_rows > 0) {
-                                while($row = $result->fetch_assoc()) {
-                                    $outputString = preg_replace('/[^0-9]/', '', $row["CSR_Id"]);
-                                    $number= (int)$outputString + 1;
-                                    $CSR_Id = "CSR-$number";								
-                             }
-                            } else {
-                                $CSR_Id ="CSR-1000";
-                            
-                            }
-
-                            ?>
 
 
                            <form action="#" autocomplete="off" method='post'>

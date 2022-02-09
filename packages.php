@@ -87,7 +87,7 @@ if ($result->num_rows > 0) {
                     <div class="col-6"><i class="icon-phone"></i><strong>+8801755582111</strong></div>
                     <div class="col-6">
                         <ul id="top_links">
-                            <li><a href="login.php" id="access_link"><b>My Account</b></a></li>
+                            <li><a href="login.php"><b>My Account</b></a></li>
                                                        
                         </ul>
                     </div>
@@ -190,7 +190,7 @@ if ($result->num_rows > 0) {
 
 					<div id="single_tour_feat">
 						<ul>
-							<li><i class="icon_set_1_icon-4"></i>Museum</li>
+							
 							<li><i class="icon_set_1_icon-83"></i><?php echo $duration; ?></li>
 							<li><i class="icon_set_1_icon-13"></i>Accessibiliy</li>
 							<li><i class="icon_set_1_icon-97"></i>Audio guide</li>

@@ -20,7 +20,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
    if($count == 1) {
         $_SESSION['login_user'] = $userEmail;      
-        echo "<a href=\"javascript:history.go(-1)\">GO BACK</a>";
+        header("location:myaccount.php");
     }
 
 

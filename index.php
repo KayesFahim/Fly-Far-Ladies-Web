@@ -48,7 +48,7 @@ include 'config.php'
                     <div class="col-6"><i class="icon-phone"></i><strong>+8801755582111</strong></div>
                     <div class="col-6">
                         <ul id="top_links">
-                            <li><a href="login.php" id="access_link"><b>My Account</b></a></li>
+                            <li><a href="login.php" ><b>My Account</b></a></li>
                                                        
                         </ul>
                     </div>
@@ -175,6 +175,7 @@ include 'config.php'
 					$PackageId = $row["id"];
 					$img = $row["coverimage"];
 					$Short_Title = $row["shortTitle"];
+					$LongTitle = $row["longTitle"];
 					$Type  = $row["tourType"];
 					$Cost  = $row["cost"];
 				       
@@ -182,7 +183,7 @@ include 'config.php'
 								<div class='tour_container'>
 									<div class='ribbon_3 popular'><span>New</span></div>
 									<div class='img_container'>
-										<a href='single_tour.php?id=$PackageId'>
+										<a href='packages.php?id=$PackageId&title=$LongTitle'>
 										<img src='Admin/Packages/$img' width='800' height='533' class='img-fluid' alt='Image'>
 										<div class='short_info'>
 											<i class='icon_set_1_icon-44'></i>$Type<span class='price'><sup>৳</sup>$Cost</span>

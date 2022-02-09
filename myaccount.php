@@ -117,7 +117,7 @@ include "session.php";
 	</header>
 	<!-- End Header -->
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="img/admin_top.jpg" data-natural-width="1400" data-natural-height="350">
+	<section class="parallax-window" data-parallax="scroll" data-image-src="img/banner.jpg" data-natural-width="1400" data-natural-height="350">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
 				<h1>My Account</h1>
@@ -160,9 +160,8 @@ include "session.php";
 									<div class="styled-select-filters">
 										<select name="sort_type" id="sort_type">
 											<option value="" selected>Sort by type</option>
-											<option value="tours">Tours</option>
-											<option value="hotels">Hotels</option>
-											<option value="transfers">Transfers</option>
+											<option value="tours">Inbound</option>
+											<option value="hotels">OutBound</option>
 										</select>
 									</div>
 								</div>
@@ -179,120 +178,94 @@ include "session.php";
 						</div>
 						<!--/tools -->
 
-						<div class="strip_booking">
-							<div class="row">
-								<div class="col-lg-2 col-md-2">
-									<div class="date">
-										<span class="month">Dec</span>
-										<span class="day"><strong>23</strong>Sat</span>
+						
+
+						<?php 
+
+						$sql = "SELECT
+						packages.duration,
+						orders.createdOn,
+						packages.shortTitle,
+						packages.cost,
+						orders.amount,
+						orders.status
+						FROM
+							orders
+						INNER JOIN packages ON orders.pkId = packages.PkId
+						where orders.email = '$login_session'";
+						$result = $conn->query($sql);
+
+						if ($result->num_rows > 0) {
+							while($row = $result->fetch_assoc()) {													  
+								$Duration = $row["duration"];
+								$short_Title = $row["shortTitle"];
+								$Cost = $row["cost"];
+								$BookingAmount = $row["amount"];
+								$Status  = $row["status"];
+								$createdOn  = $row["createdOn"];
+								$Due = $Cost - $BookingAmount;
+
+								$date=date_create("$createdOn");
+								$Month = date_format($date,"m");
+								$monthName = date("F", mktime(0, 0, 0, $Month, 10));
+
+								$Day = date_format($date,"m");
+								$dayName = date('l', strtotime($createdOn));
+								
+
+						echo "<div class='strip_booking'>
+						<div class='row'>
+								<div class='col-lg-2 col-md-2'>
+									<div class='date'>
+										<span class='month'>$monthName</span>
+										<span class='day'><strong>$Day</strong>$dayName</span>
 									</div>
 								</div>
-								<div class="col-lg-6 col-md-5">
-									<h3 class="hotel_booking">Hotel Mariott Paris<span>2 Adults / 2 Nights</span></h3>
+								<div class='col-lg-6 col-md-5'>
+									<h3 class='hotel_booking'>$short_Title<span> $Duration</span></h3>
 								</div>
-								<div class="col-lg-2 col-md-3">
-									<ul class="info_booking">
-										<li><strong>Booking id</strong> 23442</li>
-										<li><strong>Booked on</strong> Sat. 23 Dec. 2015</li>
+								<div class='col-lg-2 col-md-3'>
+									<ul class='info_booking'>
+										<li><strong>Due Amount</strong>$Due BDT</li>
+										<li><strong>Booked on</strong> $createdOn </li>
 									</ul>
 								</div>
-								<div class="col-lg-2 col-md-2">
-									<div class="booking_buttons">
-										<a href="#0" class="btn_2">Edit</a>
-										<a href="#0" class="btn_3">Cancel</a>
+								<div class='col-lg-2 col-md-2'>
+									<div class='booking_buttons'>
+										<a href='#0' class='btn_2'>Edit</a>
+										<a href='#0' class='btn_3'>$Status</a>
 									</div>
 								</div>
 							</div>
-							<!-- End row -->
-						</div>
+							</div>";
+
+							}
+						}
+							
+							?>
+
+
 						<!-- End strip booking -->
 
-						<div class="strip_booking">
-							<div class="row">
-								<div class="col-lg-2 col-md-2">
-									<div class="date">
-										<span class="month">Dec</span>
-										<span class="day"><strong>27</strong>Fri</span>
-									</div>
-								</div>
-								<div class="col-lg-6 col-md-5">
-									<h3 class="tours_booking">Louvre Museum<span>2 Adults / 2 Childs</span></h3>
-								</div>
-								<div class="col-lg-2 col-md-3">
-									<ul class="info_booking">
-										<li><strong>Booking id</strong> 23442</li>
-										<li><strong>Booked on</strong> Sat. 20 Dec. 2015</li>
-									</ul>
-								</div>
-								<div class="col-lg-2 col-md-2">
-									<div class="booking_buttons">
-										<a href="#0" class="btn_2">Edit</a>
-										<a href="#0" class="btn_3">Cancel</a>
-									</div>
-								</div>
-							</div>
-							<!-- End row -->
-						</div>
-						<!-- End strip booking -->
-
-						<div class="strip_booking">
-							<div class="row">
-								<div class="col-lg-2 col-md-2">
-									<div class="date">
-										<span class="month">Dec</span>
-										<span class="day"><strong>28</strong>Fri</span>
-									</div>
-								</div>
-								<div class="col-lg-6 col-md-5">
-									<h3 class="tours_booking">Tour Eiffel<span>2 Adults</span></h3>
-								</div>
-								<div class="col-lg-2 col-md-3">
-									<ul class="info_booking">
-										<li><strong>Booking id</strong> 23442</li>
-										<li><strong>Booked on</strong> Sat. 20 Dec. 2015</li>
-									</ul>
-								</div>
-								<div class="col-lg-2 col-md-2">
-									<div class="booking_buttons">
-										<a href="#0" class="btn_2">Edit</a>
-										<a href="#0" class="btn_3">Cancel</a>
-									</div>
-								</div>
-							</div>
-							<!-- End row -->
-						</div>
-						<!-- End strip booking -->
-
-						<div class="strip_booking">
-							<div class="row">
-								<div class="col-lg-2 col-md-2">
-									<div class="date">
-										<span class="month">Dec</span>
-										<span class="day"><strong>30</strong>Fri</span>
-									</div>
-								</div>
-								<div class="col-lg-6 col-md-5">
-									<h3 class="transfers_booking">Orly Airport<span>2 Adults / 2Childs</span></h3>
-								</div>
-								<div class="col-lg-2 col-md-3">
-									<ul class="info_booking">
-										<li><strong>Booking id</strong> 23442</li>
-										<li><strong>Booked on</strong> Sat. 20 Dec. 2015</li>
-									</ul>
-								</div>
-								<div class="col-lg-2 col-md-2">
-									<div class="booking_buttons">
-										<a href="#0" class="btn_2">Edit</a>
-										<a href="#0" class="btn_3">Cancel</a>
-									</div>
-								</div>
-							</div>
-							<!-- End row -->
-						</div>
-						<!-- End strip booking -->
+						
 
 					</section>
 					<!-- End section 1 -->
+
+					<?php
+
+						$ses_sql = mysqli_query($conn,"select * from users where email = '$login_session' ");
+						$row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);  
+
+						if(!empty($row)){
+						$email = $row['email'];
+						$name = $row['username'];
+						$phone = $row['phone'];
+						$password = $row['password'];
+
+						}
+
+					?>
 
 					
 
@@ -301,13 +274,11 @@ include "session.php";
 							<div class="col-md-6">
 								<h4>Your profile</h4>
 								<ul id="profile_summary">
-									<li>Username <span>info@clara.com</span>
+									<li>Username <span><?php echo $name ?></span>
 									</li>
-									<li>Full name <span>Clara</span>
+									<li>Email <span><?php echo $email ?></span>
 									</li>
-									<li>Email <span>Tomson</span>
-									</li>
-									<li>Phone number <span>+00 032 42366</span>
+									<li>Phone number <span><?php echo $phone ?></span>
 									</li>
 									
 								</ul>
@@ -321,21 +292,21 @@ include "session.php";
 						<!-- End row -->
 
 						<div class="divider"></div>
-
+					<form action="#" method="post"  autocomplete="off">
 						<div class="row">
 							<div class="col-md-12">
 								<h4>Edit profile</h4>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>First name</label>
-									<input class="form-control" name="first_name" id="first_name" type="text">
+									<label>Name</label>
+									<input class="form-control" name="name" value="<?php echo $name ?>" type="text">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>Last name</label>
-									<input class="form-control" name="last_name" id="last_name" type="text">
+									<label>Email</label>
+									<input class="form-control" name="email" value="<?php echo $email ?>" type="email">
 								</div>
 							</div>
 						</div>
@@ -345,7 +316,13 @@ include "session.php";
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Phone number</label>
-									<input class="form-control" name="email_2" id="email_2" type="text">
+									<input class="form-control" name="phone" value="<?php echo $phone ?>" type="text">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Phone number</label>
+									<input class="form-control" name="password" value="<?php echo $password ?>" type="text">
 								</div>
 							</div>
 						</div>
@@ -354,8 +331,43 @@ include "session.php";
 
 							<hr>
 							<button type="submit" class="btn_1 green">Update Profile</button>
+					</form>
 					</section>
 					<!-- End section 4 -->
+					<?php 
+
+						if ($_SERVER["REQUEST_METHOD"] == "POST") {
+							$Name = $_POST['name'];
+							$Email = $_POST['email'];
+							$Phone = $_POST['phone'];
+							$Password = $_POST['password'];
+							
+
+
+							
+
+								$sqlquery = "UPDATE
+								`users`
+							SET
+								
+								`username` = '$Name',
+								`email` = '$Email',
+								`phone` = '$Phone',
+								`password` = '$Password'
+							WHERE
+								email='$login_session'";
+									
+
+									if ($conn->query($sqlquery) === TRUE) {
+										echo '<script>alert("profile Updated Succesfully")</script>';
+										
+									}
+						
+							}
+																											
+						?>
+
+			
 
 					</div>
 					<!-- End content -->
