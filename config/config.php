@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('PROJECT_PATH')) {
-    define('PROJECT_PATH', ' '); // Replace this value with your project path
+    define('PROJECT_PATH', 'https://flyfarladies.com'); // Replace this value with your project path
 }
 
 if (!defined('API_DOMAIN_URL')) {

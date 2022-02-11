@@ -76,11 +76,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div id="pass-info" class="clearfix"></div>
                                 <button class="btn_full"> Login </button>
                             </form>
+                            
+                            <div class="text-center">
+                                Don’t have an account? <a href="register.php">Sign up</a>
+                             </div>
 
                         </div>
-                        <div class="text-center">
-                            Don’t have an account? <a href="register.php">Sign up</a>
-                        </div>
+                        
                 </div>
             </div>
         </div>

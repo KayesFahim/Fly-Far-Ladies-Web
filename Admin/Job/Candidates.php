@@ -1,5 +1,6 @@
 <?php
 
+include '../config.php';
 include('../session.php');
 
 ?>
@@ -10,7 +11,7 @@ include('../session.php');
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-	<title>Packages List</title>
+	<title>Job List</title>
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.png">
 	<!-- Bootstrap CSS -->
@@ -147,10 +148,10 @@ include('../session.php');
 				<div class="page-header">
 					<div class="row">
 						<div class="col-sm-12">
-							<h3 class="page-title">Gallery</h3>
+							<h3 class="page-title">Job</h3>
 							<ul class="breadcrumb">
 								<li class="breadcrumb-item"><a href="Dashboard.php">Dashboard</a></li>
-								<li class="breadcrumb-item active">Gallery</li>
+								<li class="breadcrumb-item active">Job</li>
 							</ul>
 						</div>
 					</div>
@@ -175,9 +176,11 @@ include('../session.php');
 											<thead>
 												<tr>
 													<th>ID</th>
-													<th>Title </th>
-													<th>category</th>													
-													<th>Uploaded</th>
+													<th>Category</th>
+													<th>Title</th>
+                                                    <th>Name</th>
+													<th>Phone</th>
+													<th>Applied On</th>
 													<th>Action</th>
                                                     <th></th>
 												</tr>
@@ -186,22 +189,34 @@ include('../session.php');
 
 												<?php
 
-												$sql = "SELECT * FROM stockphoto group BY id DESC";
+												$sql = "SELECT
+                                                job.category,
+                                                job.title,
+                                                participant.name,
+                                                participant.phone,
+                                                participant.email,
+                                                participant.created,
+                                                participant.resume
+                                            FROM
+                                                job
+                                            INNER JOIN participant ON job.JobId = job.JobId
+                                            ORDER BY participant.id DESC;";
 												$result = $conn->query($sql);
-                                                $count = 0;
+                                                $count =	0;
 												if ($result->num_rows > 0) {
-  												while($row = $result->fetch_assoc()) {
-                                                      $count +=	1;											  
+  												while($row = $result->fetch_assoc()) {	
+                                                    $count +=	1;
+                                                      $Resume = $row["resume"];												  
 													echo "<tr><td>$count</td>
-															<td>".$row["title"]."</td>
-                                                            <td>".$row["category"]."</td>															
-														 	<td>".$row["uploadAt"]."</td>
-															<td><a href='Edit.php' class='btn btn-primary'> Edit </a><td>
-															</tr>";   											
+																<td>".$row["category"]."</td>
+                                                                <td>".$row["title"]."</td>
+                                                                <td>".$row["name"]."</td>
+														 		<td>".$row["phone"]."</td>															
+														 		<td>".$row["created"]."</td>
+																<td><a href='$Resume' class='btn btn-primary'> Download Resume </a><td>
+																 </tr>";   											
 												  }
-												} else {
-
-											    }
+												}
 												?>
 
 

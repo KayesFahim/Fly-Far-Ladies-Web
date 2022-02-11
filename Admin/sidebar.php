@@ -26,6 +26,7 @@
                                     <ul>
                                         <li><a href='../Job/Add.php'><i class='fe fe-layout'></i> <span>Add</span></a></li>
                                         <li><a href='../Job'><i class='fe fe-layout'></i> <span> View</span></a> </li>
+                                        <li><a href='../Job/Candidates.php'><i class='fe fe-layout'></i> <span> Candidates</span></a> </li>
                                         <li><a href='../Job/Edit.php'><i class='fe fe-layout'></i> <span> Edit</span></a> </li>
                                         
                                     </ul>

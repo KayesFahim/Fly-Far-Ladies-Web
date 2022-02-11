@@ -76,7 +76,7 @@ ini_set('display_errors', 0);
                                 </tr>
                             </table>
 
-                            <a href="../admin.php" class="btn btn-primary"> Goto Booking</a>
+                            <a href="../myaccount.php" class="btn btn-primary"> Goto Booking</a>
 
                         <?php
 

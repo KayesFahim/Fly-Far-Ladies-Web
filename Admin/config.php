@@ -3,9 +3,9 @@
     date_default_timezone_set('Asia/Dhaka');
 
     $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "flyfarladies";
+    $username = "flyfarer_flyfarladies";
+    $password = "@Kayes70455";
+    $dbname = "flyfarer_flyfarladies";
     
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);

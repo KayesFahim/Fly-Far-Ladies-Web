@@ -1,15 +1,19 @@
 <?php
 
-$servername = "localhost";
-$username = "root"; // Put the MySQL Username
-$password = ""; // Put the MySQL Password
-$database = "flyfarladies"; // Put the Database Name
+    date_default_timezone_set('Asia/Dhaka');
 
-// Create connection for integration
-$conn_integration = mysqli_connect($servername, $username, $password, $database);
-
-// Check connection for integration
-if (!$conn_integration) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
+    $servername = "localhost";
+    $username = "flyfarer_flyfarladies";
+    $password = "@Kayes70455";
+    $dbname = "flyfarer_flyfarladies";
+    
+    // Create connection
+    $conn_integration = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn_integration->connect_error) {
+      die("Connection failed: " . $conn_integration->connect_error);
+    }else{
+        echo '';
+  }
+    
+?>

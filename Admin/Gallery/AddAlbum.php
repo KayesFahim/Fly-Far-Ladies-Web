@@ -8,7 +8,10 @@ require_once('../session.php');
 	
 
     $targetDir = "images/";
-	mkdir("images/".$album, 0777, true);
+	if (!file_exists("images/$album")) {
+		mkdir("images/".$album, 0777, true);
+	}
+
     $fileName = basename($_FILES["coverimage"]["name"]);
     $targetFilePath = $targetDir."$album/" . $fileName;
     $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);

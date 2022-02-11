@@ -110,6 +110,10 @@ $sql = "SELECT * FROM users ORDER BY CSR_Id DESC LIMIT 1";
                                 <div id="pass-info" class="clearfix"></div>
                                 <button class="btn_full">Create an account</button>
                             </form>
+                            
+                            <div class="text-center">
+                                Alredy have an account? <a href="login.php">Login Now</a>
+                             </div>
                            
                         </div>
                 </div>

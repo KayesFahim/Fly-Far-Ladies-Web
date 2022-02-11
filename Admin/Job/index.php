@@ -11,7 +11,7 @@ include('../session.php');
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-	<title>Packages List</title>
+	<title>Job List</title>
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.png">
 	<!-- Bootstrap CSS -->
@@ -148,10 +148,10 @@ include('../session.php');
 				<div class="page-header">
 					<div class="row">
 						<div class="col-sm-12">
-							<h3 class="page-title">Packages</h3>
+							<h3 class="page-title">Job</h3>
 							<ul class="breadcrumb">
 								<li class="breadcrumb-item"><a href="Dashboard.php">Dashboard</a></li>
-								<li class="breadcrumb-item active">Packages</li>
+								<li class="breadcrumb-item active">Job</li>
 							</ul>
 						</div>
 					</div>
@@ -178,7 +178,6 @@ include('../session.php');
 													<th>ID</th>
 													<th>Category</th>
 													<th>Title</th>
-													<th>Description</th>
 													<th>Created</th>
 													<th>Action</th>
                                                     <th></th>
@@ -193,9 +192,9 @@ include('../session.php');
 
 												if ($result->num_rows > 0) {
   												while($row = $result->fetch_assoc()) {													  
-													echo "<tr><td>".$row["Job-Id"]."</td>
+													echo "<tr><td>".$row["JobId"]."</td>
 																<td>".$row["category"]."</td> 
-														 		<td>".$row["Title"]."</td>															
+														 		<td>".$row["title"]."</td>															
 														 		<td>".$row["created"]."</td>
 																<td><a href='Edit.php' class='btn btn-primary'> Edit </a><td>
 																 </tr>";   											

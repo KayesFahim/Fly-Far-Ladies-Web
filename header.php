@@ -1,3 +1,8 @@
+<?php
+
+include "config.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +47,7 @@
                     <div class="col-6"><i class="icon-phone"></i><strong>+8801755582111</strong></div>
                     <div class="col-6">
                         <ul id="top_links">
-                            <li><a href="#sign-in-dialog" id="access_link">My Account</a></li>                            
+                            <li><a href="myaccount.php">My Account</a></li>                            
                         </ul>
                     </div>
                 </div><!-- End row -->
@@ -53,8 +58,8 @@
 			<div class="row">
 				<div class="col-3">
 					<div id="logo">
-						<a href="index.html"><img src="img/logo.png" width="160" height="34" alt="City tours" data-retina="true" class="logo_normal"></a>
-						<a href="index.html"><img src="img/logo_sticky.png" width="160" height="34" alt="City tours" data-retina="true" class="logo_sticky"></a>
+						<a href="index.php"><img src="img/logo.png" width="160" height="34" alt="City tours" data-retina="true" class="logo_normal"></a>
+						<a href="index.php"><img src="img/logo_sticky.png" width="160" height="34" alt="City tours" data-retina="true" class="logo_sticky"></a>
 					</div>
 				</div>
 				<nav class="col-9">
@@ -82,13 +87,19 @@
                                 </ul>
                             </li>
                              <li class="submenu">
-                                <a href="gallery_4_columns.html" class="show-submenu">Stock Photos</i></a>
+                                <a href="StockPhoto.php" class="show-submenu">Stock Photos</i></a>
                             </li>
                             <li class="submenu">
-                                <a href="gallery_3_columns.html" class="show-submenu">Gallery </i></a>                               
+                                <a href="Gallery.php" class="show-submenu">Gallery </i></a>                               
                             </li>
                             <li class="submenu">
-                                <a href=" " class="show-submenu">Jobs</a>                               
+                                <a href="Job.php" class="show-submenu">Jobs</a>                               
+                            </li>
+                            <li class="submenu">
+                                <a href="about.php" class="show-submenu">About</a>                               
+                            </li>
+                            <li class="submenu">
+                                <a href="contact.php" class="show-submenu">Contact Us</a>                               
                             </li>
                              
                             

@@ -10,9 +10,8 @@ require_once('../session.php');
 
 
     $targetDir = "images/";
-	mkdir("images/".$shortTitle, 0777, true);
     $fileName = basename($_FILES["coverimage"]["name"]);
-    $targetFilePath = $targetDir."$shortTitle/" . $fileName;
+    $targetFilePath = $targetDir."$album/" . $fileName;
     $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
 
   // Allow certain file formats

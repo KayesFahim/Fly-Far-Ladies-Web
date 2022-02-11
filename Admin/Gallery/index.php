@@ -175,8 +175,9 @@ include('../session.php');
 											<thead>
 												<tr>
 													<th>ID</th>
+													<th>Title </th>
 													<th>Album Name</th>													
-													<th>Created</th>
+													<th>Uploaded</th>
 													<th>Action</th>
                                                     <th></th>
 												</tr>
@@ -185,13 +186,14 @@ include('../session.php');
 
 												<?php
 
-												$sql = "SELECT * FROM gallery group BY album DESC";
+												$sql = "SELECT * FROM gallery group BY id DESC";
 												$result = $conn->query($sql);
                                                 $count = 0;
 												if ($result->num_rows > 0) {
   												while($row = $result->fetch_assoc()) {
                                                       $count +=	1;											  
 													echo "<tr><td>$count</td>
+															<td>".$row["title"]."</td>
                                                             <td>".$row["album"]."</td>															
 														 	<td>".$row["uploadAt"]."</td>
 															<td><a href='Edit.php' class='btn btn-primary'> Edit </a><td>

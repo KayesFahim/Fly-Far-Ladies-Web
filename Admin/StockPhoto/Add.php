@@ -1,18 +1,16 @@
-<?php
-
-require_once('../session.php');
+<?php require_once('../session.php');
 
  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$album = $_POST['album'];
+	$category = $_POST['category'];
 	$title = $_POST['title'];
-	$description = $_POST['description'];
 	
 
-
     $targetDir = "images/";
-	mkdir("images/".$shortTitle, 0777, true);
+	if (!file_exists("images/$category")) {
+		mkdir("images/".$category, 0777, true);
+	}
     $fileName = basename($_FILES["coverimage"]["name"]);
-    $targetFilePath = $targetDir."$shortTitle/" . $fileName;
+    $targetFilePath = $targetDir."$category/" . $fileName;
     $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
 
   // Allow certain file formats
@@ -30,17 +28,15 @@ require_once('../session.php');
   }
 
 
-    $sqlquery = "INSERT INTO `gallery`(                                            
-        `album`,
+    $sqlquery = "INSERT INTO `stockphoto`(                                            
+        `category`,
 		`title`,
-		`url`,
-		`description`
+		`link`
     )
     VALUES(
-        '$album',
+        '$category',
         '$title',
-		'$targetFilePath',
-		'$description'
+		'$targetFilePath'
 
     )";
         
@@ -64,7 +60,7 @@ require_once('../session.php');
 	<meta charset="utf-8">
 	<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-	<title>Add Gallery Images</title>
+	<title>Add Stock Images</title>
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.png">
 	<!-- Bootstrap CSS -->
@@ -191,10 +187,10 @@ require_once('../session.php');
 				<div class="page-header">
 					<div class="row">
 						<div class="col-sm-12">
-							<h3 class="page-title">Add New Packages</h3>
+							<h3 class="page-title">Add New Images</h3>
 							<ul class="breadcrumb">
 								<li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-								<li class="breadcrumb-item active">Add Packages</li>
+								<li class="breadcrumb-item active">Add Images</li>
 							</ul>
 						</div>
 					</div>
@@ -210,7 +206,7 @@ require_once('../session.php');
 							<div class="col-md-12">
 								<div class="card">
 									<div class="card-header">
-										<h4 class="text-danger card-title">Packages Information</h4>
+										<h4 class="text-danger card-title">Images Information</h4>
 									</div>
                                     
 									<div class="card-body">
@@ -221,8 +217,8 @@ require_once('../session.php');
 														
 														<div class="col-md-3">
 															<div class="form-group">
-																<label>Album Name</label>
-																<input type="text" name="album" maxlength="50" class="form-control" required>
+																<label>Category Name</label>
+																<input type="text" name="category" maxlength="50" class="form-control" required>
 															</div>
 														</div>
 														<div class="col-md-3">
@@ -240,15 +236,7 @@ require_once('../session.php');
 														</div>
                                                         
                                                     </div>
-                                                    <div class="row">    
-                                                        <div class="col-md-6">
-															<div class="form-group">
-																<label for="description">Description</label>
-																<textarea class="form-control" name="description" rows="5"></textarea>
-															</div>
-														</div>
-
-                                                        
+                                                                                                           
                                                     </div>
                                                 </div>
                                             </div>
