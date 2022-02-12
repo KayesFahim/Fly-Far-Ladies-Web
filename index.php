@@ -71,7 +71,7 @@ include 'config.php'
                     <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
                     <div class="main-menu">
                         <div id="header_menu">
-                            <img src="img/main-logo.png" width="160" height="34" alt="City tours" data-retina="true">
+                            <img src="img/logo.svg" width="200px" height="50px" alt="Fly Far Ladies" data-retina="true">
                         </div>
                         <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
                          <ul>
@@ -81,11 +81,11 @@ include 'config.php'
                             <li class="submenu">
                                 <a href="javascript:void(0);" class="show-submenu">Upcoming Package <i class="icon-down-open-mini"></i></a>
                                 <ul>
-                                    <li><a href="all_tours_list.html">International</a></li>                                   
-                                    <li class="third-level"><a href="javascript:void(0);">Inbound Tour</a>
+                                    <li><a href="allpackages.php?search=Internation">International</a></li>                                   
+                                    <li class="third-level"><a href="jallpackages.php?search=Inbound Tour">Inbound Tour</a>
                                         <ul>
-                                            <li><a href="single_tour_fixed_sidebar.html">Day Long Tour</a></li>
-                                            <li><a href="single_tour_with_gallery_fixed_sidebar.html">Night Out Tour</a></li>
+                                            <li><a href="allpackages.php?search=Day Long Tour">Day Long Tour</a></li>
+                                            <li><a href="allpackages.php?search=Night Out Tour">Night Out Tour</a></li>
                                             
                                         </ul>
                                     </li>                                   
@@ -100,7 +100,7 @@ include 'config.php'
                             <li class="submenu">
                                 <a href="Job.php" class="show-submenu">Jobs </a>                               
                             </li>
-							<li class="submenu">
+							              <li class="submenu">
                                 <a href="about.php" class="show-submenu">About</a>                               
                             </li>
                             <li class="submenu">

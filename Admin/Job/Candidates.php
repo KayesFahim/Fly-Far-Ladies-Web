@@ -38,7 +38,7 @@ include('../session.php');
 			<!-- Logo -->
 			<div class="header-left">
 				<a href="../index.php" class="logo">
-					<img src="../logo.png" alt="Logo">
+					<img src="../logo.svg" alt="Logo">
 				</a>
 				<a href="../index.php" class="logo logo-small">
 					<img src="../logo.png" alt="Logo" width="30" height="30">

@@ -1,76 +1,3 @@
-/*
-Theme Name: CITYTOURS  v.5.1
-Theme URI: http://www.ansonika.com/citytours/
-Author: Ansonika
-Author URI: http://themeforest.net/user/Ansonika/
-
-[Table of contents] 
-
-1. SITE STRUCTURE and TYPOGRAPHY
-- 1.1 Typography
-- 1.2 Buttons
-- 1.3 Structure
-- 1.4 Menu
-
-2. CONTENT
-- 2.1 Home
-- 2.2 All tours list / All tours grid
-- 2.3 Single tour page
-- 2.4 Cart - Payment - Confirmation
-- 2.5 About
-- 2.6 Contact us
-- 2.7 Login / register
-- 2.8 Tour guide page
-- 2.9 Transfer
-- 3.0 Hotel
-- 3.1 Whishlist
-- 3.2 Map listing
-
-3. COMMON
-- Tooltips
-- Containers styles
-- Form styles
-- Tabs, collapse
-- etc
-
-4. UPDATES 
-- 4.1 Home 7
-- 4.2 Faq
-- 4.3 Pricing tables
-- 4.4 Common
-
-5. UPDATES
-- 5.1 Ribbons css
-- 5.2 Footers versions
-- 5.3 Header versions
-- 5.4 Gallery overlay
-- 5.5 Map + infobox
-
-6. UPDATES
-- 6.1 Footer Fixed
-- 6.2 Notify
-- 6.3 Search modal
-- 6.4 Header 7
-
-7. UPDATES
-- 7.1 Date dropper/Time dropper
-- 7.2 Tabs home
-- 7.3 Morphext
-- 7.4 Cookie-bar 
-- 7.5 Sing In Modal
-- 7.6 Styles Switcher
-
-8. UPDATES
-- 8.1 Home
-- 8.2 Misc
-
-
-9. RESPONSIVE
-
-/*============================================================================================*/
-/* 1.  SITE STRUCTURE and TYPOGRAPHY */
-/*============================================================================================*/
-
 /*-------- 1.1 Typography --------*/
 body {background:#f9f9f9; font-size:15px; line-height:20px; font-family:"Montserrat", Arial, sans-serif; color:#555;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
 
@@ -384,13 +311,13 @@ header.sticky #logo .logo_sticky{ display:block; }
 	padding:0;
 }
 #logo_home h1 a, header.sticky #logo_home h1 a, header#plain #logo_home h1 a, header#colored #logo_home h1 a{
-	width:160px;
-	height:34px;
+	width:200px;
+	height:50px;
 	display:block;
-	background-image:url(../img/logo.png);
+	background-image:url(../img/logo.svg);
 	background-repeat:no-repeat;
 	background-position:left top;
-	background-size: 160px 34px;
+	background-size: 200px 50px;
 	text-indent:-9999px;
 }
 header.sticky #logo_home h1{
@@ -398,10 +325,10 @@ header.sticky #logo_home h1{
 	padding:0;
 }
 header.sticky #logo_home h1 a{
-	background-image:url(../img/logo_sticky.png);
+	background-image:url(../img/logo_sticky.svg);
 }
 header#plain #logo_home h1 a{
-	background-image:url(../img/logo_sticky.png);
+	background-image:url(../img/logo_sticky.svg);
 }
 header.sticky#colored #logo_home h1 a{
 	background-image:url(../img/logo_sticky_colored.png);
